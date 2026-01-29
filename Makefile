@@ -57,6 +57,13 @@ processing_public_tests.exe: processing_public_tests.cpp Matrix.cpp \
 resize.exe: resize.cpp Matrix.cpp Image.cpp processing.cpp
 	$(CXX) $(CXXFLAGS) $(LIBJPEG_CXXFLAGS) $^ $(LIBJPEG_LDFLAGS) -o $@
 
+
+mat_pub: Matrix_public_tests.exe
+	./Matrix_public_tests.exe
+
+mat_own: Matrix_tests.exe
+	./Matrix_tests.exe
+
 # Disable built-in Makefile rules
 .SUFFIXES:
 

@@ -1,13 +1,25 @@
 #include <cassert>
 #include "Matrix.hpp"
+using std::vector;
+using std::cout;
+using std::endl;
+
+void empty(Matrix* mat)
+{
+  int size = mat->height * mat->width;
+  if ( size != mat->data.size()) mat->data.resize(size);
+}
 
 // REQUIRES: mat points to a Matrix
 //           0 < width && 0 < height
 // MODIFIES: *mat
 // EFFECTS:  Initializes *mat as a Matrix with the given width and height,
 //           with all elements initialized to 0.
-void Matrix_init(Matrix* mat, int width, int height) {
-  assert(false); // TODO Replace with your implementation!
+void Matrix_init(Matrix* mat, int width, int height) 
+{
+  mat->width = width;
+  mat->height = height;
+  Matrix_fill(mat, 0);
 }
 
 // REQUIRES: mat points to a valid Matrix
@@ -18,20 +30,23 @@ void Matrix_init(Matrix* mat, int width, int height) {
 //           Each element is followed by a space and each row is followed
 //           by a newline. This means there will be an "extra" space at
 //           the end of each line.
-void Matrix_print(const Matrix* mat, std::ostream& os) {
+void Matrix_print(const Matrix* mat, std::ostream& os) 
+{
   assert(false); // TODO Replace with your implementation!
 }
 
 // REQUIRES: mat points to a valid Matrix
 // EFFECTS:  Returns the width of the Matrix.
-int Matrix_width(const Matrix* mat) {
-  assert(false); // TODO Replace with your implementation!
+int Matrix_width(const Matrix* mat) 
+{
+  return mat->width;
 }
 
 // REQUIRES: mat points to a valid Matrix
 // EFFECTS:  Returns the height of the Matrix.
-int Matrix_height(const Matrix* mat) {
-  assert(false); // TODO Replace with your implementation!
+int Matrix_height(const Matrix* mat) 
+{
+  return mat->height;
 }
 
 // REQUIRES: mat points to a valid Matrix
@@ -42,8 +57,10 @@ int Matrix_height(const Matrix* mat) {
 //            element in the Matrix.)
 // EFFECTS:  Returns a pointer to the element in the Matrix
 //           at the given row and column.
-int* Matrix_at(Matrix* mat, int row, int column) {
-  assert(false); // TODO Replace with your implementation!
+int* Matrix_at(Matrix* mat, int row, int column) 
+{
+  vector<int> &data = mat->data;
+  return &data[(Matrix_width(mat) * column) + row];
 }
 
 // REQUIRES: mat points to a valid Matrix
@@ -52,15 +69,25 @@ int* Matrix_at(Matrix* mat, int row, int column) {
 //
 // EFFECTS:  Returns a pointer-to-const to the element in
 //           the Matrix at the given row and column.
-const int* Matrix_at(const Matrix* mat, int row, int column) {
-  assert(false); // TODO Replace with your implementation!
+const int* Matrix_at(const Matrix* mat, int row, int column) 
+{
+  const vector<int> &data = mat->data;
+  return &data[(Matrix_width(mat) * column) + row];
 }
 
 // REQUIRES: mat points to a valid Matrix
 // MODIFIES: *mat
 // EFFECTS:  Sets each element of the Matrix to the given value.
-void Matrix_fill(Matrix* mat, int value) {
-  assert(false); // TODO Replace with your implementation!
+void Matrix_fill(Matrix* mat, int value) 
+{
+  //checks if data vector is empty
+  //if so then it makes it the array that 
+  empty(mat);
+
+  for (int i = 0; i < mat->data.size(); i++)
+  {
+    mat->data[i] = value;
+  }
 }
 
 // REQUIRES: mat points to a valid Matrix
@@ -68,8 +95,12 @@ void Matrix_fill(Matrix* mat, int value) {
 // EFFECTS:  Sets each element on the border of the Matrix to
 //           the given value. These are all elements in the first/last
 //           row or the first/last column.
-void Matrix_fill_border(Matrix* mat, int value) {
-  assert(false); // TODO Replace with your implementation!
+void Matrix_fill_border(Matrix* mat, int value) 
+{
+  //checks to make sure that data is not empty
+  empty(mat);
+
+  
 }
 
 // REQUIRES: mat points to a valid Matrix

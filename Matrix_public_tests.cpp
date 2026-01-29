@@ -4,6 +4,9 @@
 #include <sstream>
 
 using std::ostringstream;
+using std::cout;
+using std::endl;
+using std::vector;
 
 
 // This is the public Matrix test for which the autograder gives feedback.
